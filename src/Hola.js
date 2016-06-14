@@ -1,12 +1,19 @@
+let weakMap = new WeakMap();
+
 export default class Hola{
   constructor(nombre){
-    this.nombre=nombre;
+    let state = {};
+    weakMap.set(this, state);
+
+    state.nombre=nombre;
   }
-  getNombre(){
-    return this.nombre;
+  get Nombre(){
+    let state = weakMap.get(this);
+    return state.nombre;
   }
-  setNombre(nombre){
-    this.nombre=nombre;
+  set Nombre(nombre){
+    let state = weakMap.get(this);
+    state.nombre = nombre;
   }
   
 }
